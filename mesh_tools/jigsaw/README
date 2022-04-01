@@ -1,0 +1,7 @@
+The all-in-one python scripts that generate the SCVT meshes using jigsaw method from Pedro Peixoto
+
+see dicussion here:
+https://forum.mmm.ucar.edu/phpBB3/viewtopic.php?f=12&t=291
+
+and github repo here:
+https://github.com/pedrospeixoto/MPAS-PXT/tree/master/grids/utilities/jigsaw
