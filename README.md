@@ -16,7 +16,7 @@ The latest documentation for the conda package `mpas-tools` can be found here:
 Many tools are not in the conda package, and documentation (sometimes fairly
 limited) is available at the beginning of each script.
 
-# YL: Installation of mpas_tools to site-packages using conda_packages
+## YL: Installation of mpas_tools to site-packages using conda_packages
 1. brew install proj
 2. brew install geos
 3. pip install cartopy
@@ -30,7 +30,7 @@ limited) is available at the beginning of each script.
    a. cd conda_package
    b. python setup.py install
 
-# YL: modifications for 2D mesh generation
+## YL: modifications for 2D mesh generation
 add option to rotate periodic_hex from yz plane to xz plane (xz_plane=1 at prompt)
 
 To generate xz plane mesh (using included namelist as an example):
