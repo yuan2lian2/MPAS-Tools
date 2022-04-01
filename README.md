@@ -16,9 +16,7 @@ The latest documentation for the conda package `mpas-tools` can be found here:
 Many tools are not in the conda package, and documentation (sometimes fairly
 limited) is available at the beginning of each script.
 
-YL:
-
-to install mpas_tools to site-packages using conda_packages
+# YL: Installation of mpas_tools to site-packages using conda_packages
 1. brew install proj
 2. brew install geos
 3. pip install cartopy
