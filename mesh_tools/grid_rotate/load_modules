@@ -1,0 +1,5 @@
+# modules needed to compile grid_rotate on Pleiades
+module load comp-intel/2020.0.166
+module load hdf4/4.2.12
+module load hdf5/1.8.18_serial
+module load netcdf

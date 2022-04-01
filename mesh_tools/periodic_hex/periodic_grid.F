@@ -31,6 +31,11 @@ program hexagonal_periodic_grid
    integer :: nprocx, nprocy
    character (len=32) :: decomp_fname
 
+   !c-yl: add grid rotation option
+   integer :: xz_plane
+
+   !c-yl: in name list, ny is always the long domain dimension (default yz plane)
+   !      the option xz_plane = 1 will rotate yz to xz
    call cell_indexing_read_nl()
 
    nCells = nx*ny
@@ -80,6 +85,10 @@ program hexagonal_periodic_grid
    allocate(zVertex(nVertices))
    allocate(meshDensity(nCells))
 
+   !c-yl: add grid rotation option
+   write(*,901)
+   read(*,*) xz_plane
+   901 format(5X,' xz plane = 1; yz_plane = 0 ....... > ')
 
    do iRow = 1, ny
    do iCol = 1, nx
@@ -261,30 +270,60 @@ program hexagonal_periodic_grid
    !
    ! Write grid to grid.nc file
    !
-   call write_netcdf_init( nCells, nEdges, nVertices, maxEdges, vertexDegree, dc, nx, ny )
+
+   !c-yl: add grid rotation option
+   if (xz_plane .ne. 1) then  !c-yl yz_plane as default
+      call write_netcdf_init( nCells, nEdges, nVertices, maxEdges, vertexDegree, dc, nx, ny )
+
+      call write_netcdf_fields( latCell, lonCell, xCell, yCell, zCell, indexToCellID, &
+                                latEdge, lonEdge, xEdge, yEdge, zEdge, indexToEdgeID, &
+                                latVertex, lonVertex, xVertex, yVertex, zVertex, indexToVertexID, &
+                                cellsOnEdge, &
+                                nEdgesOnCell, &
+                                nEdgesOnEdge, &
+                                edgesOnCell, &
+                                edgesOnEdge, &
+                                weightsOnEdge, &
+                                dvEdge, &
+                                dcEdge, &
+                                angleEdge, &
+                                areaCell, &
+                                areaTriangle, &
+                                cellsOnCell, &
+                                verticesOnCell, &
+                                verticesOnEdge, &
+                                edgesOnVertex, &
+                                cellsOnVertex, &
+                                kiteAreasOnVertex, &
+                                meshDensity &
+                               )
+
+   else  !c-yl rotate yz plane to xz plane
+      call write_netcdf_init( nCells, nEdges, nVertices, maxEdges, vertexDegree, dc, ny, nx )
  
-   call write_netcdf_fields( latCell, lonCell, xCell, yCell, zCell, indexToCellID, &
-                             latEdge, lonEdge, xEdge, yEdge, zEdge, indexToEdgeID, &
-                             latVertex, lonVertex, xVertex, yVertex, zVertex, indexToVertexID, &
-                             cellsOnEdge, &
-                             nEdgesOnCell, &
-                             nEdgesOnEdge, &
-                             edgesOnCell, &
-                             edgesOnEdge, &
-                             weightsOnEdge, &
-                             dvEdge, &
-                             dcEdge, &
-                             angleEdge, &
-                             areaCell, &
-                             areaTriangle, &
-                             cellsOnCell, &
-                             verticesOnCell, &
-                             verticesOnEdge, &
-                             edgesOnVertex, &
-                             cellsOnVertex, &
-                             kiteAreasOnVertex, &
-                             meshDensity &
-                            )
+      call write_netcdf_fields( lonCell, latCell, yCell, xCell, zCell, indexToCellID, &
+                                lonEdge, latEdge, yEdge, xEdge, zEdge, indexToEdgeID, &
+                                lonVertex, latVertex, yVertex, xVertex, zVertex, indexToVertexID, &
+                                cellsOnEdge, &
+                                nEdgesOnCell, &
+                                nEdgesOnEdge, &
+                                edgesOnCell, &
+                                edgesOnEdge, &
+                                weightsOnEdge, &
+                                dvEdge, &
+                                dcEdge, &
+                                angleEdge, &
+                                areaCell, &
+                                areaTriangle, &
+                                cellsOnCell, &
+                                verticesOnCell, &
+                                verticesOnEdge, &
+                                edgesOnVertex, &
+                                cellsOnVertex, &
+                                kiteAreasOnVertex, &
+                                meshDensity &
+                               )
+   endif
 
    call write_netcdf_finalize()
 
