@@ -22,11 +22,14 @@ limited) is available at the beginning of each script.
 3. pip install cartopy
 4. pip install imageio
 5. install jigsawpy https://github.com/dengwirda/jigsaw-python.git
-	a. python setup.py build_external
-	b. python setup.py install
+
+	+ a. python setup.py build_external
+	+ b. python setup.py install
+
 6. install mpas_tools https://github.com/MPAS-Dev/MPAS-Tools.git
-	a. cd conda_package
-	b. python setup.py install
+
+	+ a. cd conda_package
+	+ b. python setup.py install
 
 ## YL: modifications for 2D mesh generation
 add option to rotate periodic_hex from yz plane to xz plane (xz_plane=1 at prompt)
