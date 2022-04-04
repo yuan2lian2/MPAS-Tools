@@ -1,7 +1,11 @@
-The all-in-one python scripts that generate the SCVT meshes using jigsaw method from Pedro Peixoto
+The all-in-one python scripts that generate the SCVT meshes using jigsaw method from Pedro Peixoto, this includes
+the conversion of jigsaw vtk file to netcdf
 
 see dicussion here:
 https://forum.mmm.ucar.edu/phpBB3/viewtopic.php?f=12&t=291
 
 and github repo here:
 https://github.com/pedrospeixoto/MPAS-PXT/tree/master/grids/utilities/jigsaw
+
+the python scripts here depend on
+jigsaw-python/external/jigsaw/bin/jigsaw
